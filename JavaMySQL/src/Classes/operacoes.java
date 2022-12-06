@@ -17,7 +17,7 @@ public class operacoes {
     private String cidade;
     private String celular;
     private String cargo;
-    private String salario;
+    private float salario;
     
 	public int getId() {
 		return id;
@@ -61,32 +61,38 @@ public class operacoes {
 	public void setCargo(String cargo) {
 		this.cargo = cargo;
 	}
-	public String getSalario() {
+	public float getSalario() {
 		return salario;
 	}
-	public void setSalario(String salario) {
+	public void setSalario(float salario) {
 		this.salario = salario;
 	}
 	
-	public operacoes(String nome) {
+	public operacoes(String nome, String cpf, String endereco, String cidade, String celular, String cargo, float  salario) {
 		
 		this.nome = nome;
 		this.id = id;
-		/*this.cpf = cpf;
+		this.cpf = cpf;
 		this.endereco = endereco;
 		this.cidade = cidade;
 		this.celular = celular;
 		this.cargo = cargo;
-		this.salario = salario;*/
+		this.salario = salario;
 	}
     
 	public void salvar() {
 		try {
 			Connection con = Conexao.fazCon();
-			String sql = "insert into funcionarios(nome) value (?)";
+			String sql = "insert into funcionarios(nome,cpf,endereco,cidade,celular,cargo,salario) value (?,?,?,?,?,?,?)";
 			
 			PreparedStatement stmt = con.prepareStatement(sql);
 			stmt.setString(1, nome);
+			stmt.setString(2, cpf);
+			stmt.setString(3, endereco);
+			stmt.setString(4, cidade);
+			stmt.setString(5, celular);
+			stmt.setString(6, cargo);
+			stmt.setFloat(7, salario);
 			stmt.execute();
 			stmt.close();
 			con.close();
@@ -101,10 +107,17 @@ public class operacoes {
 		
 		try {
 			Connection con = Conexao.fazCon();
-			String sql = "update funcionarios set nome=? where id=?";
+			String sql = "update funcionarios set nome=?,cpf=?,endereco=?,cidade=?,celular=?,cargo=?,salario=? where id=?";
 			PreparedStatement stmt;
 			stmt = con.prepareStatement(sql);
 			stmt.setString(1, nome);
+			stmt.setString(1, nome);
+			stmt.setString(2, cpf);
+			stmt.setString(3, endereco);
+			stmt.setString(4, cidade);
+			stmt.setString(5, celular);
+			stmt.setString(6, cargo);
+			stmt.setFloat(7, salario);
 			stmt.setInt(2, id);
 			stmt.execute();
 			stmt.close();
@@ -116,7 +129,7 @@ public class operacoes {
 		
 	}
 	
-	public void buscar() {
+	/*public void buscar() {
 		
 		try {
 			Connection con = Conexao.fazCon();
@@ -133,5 +146,5 @@ public class operacoes {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
+	}*/
 }

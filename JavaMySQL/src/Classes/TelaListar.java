@@ -90,7 +90,7 @@ public class TelaListar extends JFrame {
 					
 					while (rs.next()) {
 						
-						modelo.addRow(new Object[]{rs.getString("id"),rs.getString("nome"),rs.getString("cpf"),rs.getString("endereco"),rs.getString("cidade"),rs.getString("celular"),rs.getString("cargo"),rs.getString("salario")});
+						 modelo.addRow(new Object[]{rs.getString("id"),rs.getString("nome"),rs.getString("cpf"),rs.getString("endereco"),rs.getString("cidade"),rs.getString("celular"),rs.getString("cargo"),rs.getString("salario")});
 						
 					}
 					

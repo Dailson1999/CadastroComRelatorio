@@ -8,10 +8,18 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.PageSize;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
+
 import ConexaoMySQL.Conexao;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.FileOutputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -114,6 +122,34 @@ public class RelatoriDataAttEndereco extends JFrame {
 		});
 		btnVoltar.setBounds(123, 227, 89, 23);
 		contentPane.add(btnVoltar);
+		
+		JButton btnPDF = new JButton("PDF");
+		btnPDF.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				
+				try {Connection con = Conexao.fazCon();
+				String sql = "select *from vw_ultimaAttEndereco;";
+				PreparedStatement stmt;
+				stmt = con.prepareStatement(sql);
+				ResultSet rs = stmt.executeQuery();
+				Document doc = new Document();
+					PdfWriter.getInstance(doc, new FileOutputStream("C:\\Users\\dails\\eclipse-workspace\\PDF_Relatorios.pdf"));
+					
+					doc.open();
+					doc.setPageSize(PageSize.A4);
+					doc.add((Element) tableData/*new Object[]{rs.getString("id"),rs.getString("nome"),rs.getString("cpf"),rs.getString("changedat")}*/);
+					
+				
+				} catch (Exception e1) {
+					// TODO: handle exception
+					
+				}
+				
+			}
+		});
+		btnPDF.setBounds(230, 227, 89, 23);
+		contentPane.add(btnPDF);
 	}
-
 }

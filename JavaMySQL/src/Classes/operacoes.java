@@ -1,5 +1,12 @@
 package Classes;
 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.PageSize;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
+
+import java.io.FileOutputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -127,6 +134,29 @@ public class operacoes {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	private static String gerarPDF(String relatorio ) {
+		Connection con = Conexao.fazCon();
+		Document doc = new Document();
+		
+		try {
+			PdfWriter.getInstance(doc, new FileOutputStream("C:\\Users\\dails\\eclipse-workspace\\PDF_Relatorios.pdf"));
+			
+			doc.open();
+			doc.setPageSize(PageSize.A4);
+			doc.add(new Paragraph(relatorio));
+			
+			
+		} catch (DocumentException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}catch (Exception e) {
+			// TODO: handle exception
+		}finally {
+			
+		}
+		return relatorio;
 	}
 	
 	/*public void buscar() {

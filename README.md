@@ -4,8 +4,7 @@
 "# Sistema-Cadastro-e-Relatorios" 
 "# Sistema-Cadastro-e-Relatorios" 
 "# CadastroComRelatorio" 
-"# exercicios-em-C" 
-"# Tabuada-JS" 
+
 =======
 Programa de cadastro de funcionários feitos com JAVA e o MYSQL, cadastra nome, CPF, endereço, cidade, celular, cargo, salário e gera relatórios.
 No programa tem as funções de salvar, deletar, atualizar, buscar, listar, gerar relatórios dos funcionários de endereços, salários, funcionários que foram 
